@@ -25,7 +25,7 @@ SECRET_KEY = '5)1+sf=6pk*v@7jnvc2f%k%2(yc@sjs+5_p-gy-heg9&_ozovf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -128,3 +130,17 @@ STATICFILES_DIRS = (
 #
 # LOGIN_URL = '/auth/login/'
 # LOGIN_ERROR_URL = '/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    from .prod_settings import *
