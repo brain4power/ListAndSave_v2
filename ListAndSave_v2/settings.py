@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'mainapp',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'ListAndSave_v2.urls'
@@ -126,8 +129,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-# AUTH_USER_MODEL = 'authapp.SimpleUser'
-#
+AUTH_USER_MODEL = 'authapp.SimpleUser'
+
 # LOGIN_URL = '/auth/login/'
 # LOGIN_ERROR_URL = '/'
 
