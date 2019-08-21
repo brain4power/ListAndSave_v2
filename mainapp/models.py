@@ -6,12 +6,12 @@ class ProductCategory(models.Model):
     """Just categories for products"""
 
     CREATION_TYPES = (
-        'default',
-        'user',
+        ('default', 'default'),
+        ('user', 'user'),
     )
 
     name = models.CharField(max_length=32)
-    creation_type = models.CharField(choices=CREATION_TYPES)
+    creation_type = models.CharField(choices=CREATION_TYPES, max_length=10)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
@@ -20,15 +20,15 @@ class Product(models.Model):
     """Base Product model"""
 
     CREATION_TYPES = (
-        'default',
-        'user',
+        ('default', 'default'),
+        ('user', 'user'),
     )
 
     parent_product = models.ForeignKey('self', on_delete=models.PROTECT)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    creation_type = models.CharField(choices=CREATION_TYPES)
+    creation_type = models.CharField(choices=CREATION_TYPES, max_length=10)
     default_product_category = models.ForeignKey(ProductCategory, on_delete=models.PROTECT, null=True)
-    name = models.CharField()
+    name = models.CharField(max_length=32)
     is_active = models.BooleanField(default=True)
 
 
